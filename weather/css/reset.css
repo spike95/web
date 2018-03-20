@@ -1,0 +1,225 @@
+html{font-size: 62.5%}
+*{padding: 0;margin: 0;}
+*{box-sizing: border-box;}
+body{font:12px;background:#fff;-webkit-text-size-adjust:100%;} 
+a{color:#2d374b;text-decoration:none} 
+a:hover{color:#cd0200;text-decoration:underline} 
+em{font-style:normal} 
+li{list-style:none} 
+img{border:0;vertical-align:middle} 
+table{border-collapse:collapse;border-spacing:0} 
+p{word-wrap:break-word} 
+
+header{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	border: 1px solid #ccc;
+}
+#top p{
+	display: inline-block;
+}
+#top{
+	width: 800px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 20px;
+}
+#top span{
+	display: flex;
+	align-items: center;
+}
+#top label{
+	font-size: 2rem;
+}
+.top-left input{
+	height: 30px;
+	margin-left: 10px;
+	width: 60%;
+	border:solid 1px #ccc;
+	border-radius: 3px;
+}
+.top-left button{
+	height: 30px;	
+	margin-left: 5px;
+}
+
+
+.top-left{
+	width: 70%;
+}
+#top .top-right{
+	width:30%;
+	display: flex;
+	align-items: center;
+	justify-content:flex-end; 
+}
+.top-right a:hover{
+	text-decoration-line: none;
+	color:#000;
+}
+.top-right *{
+	font-size: 14px;
+	margin-right: 10px;
+}
+.ui-state-hover{
+	border: 1px solid #000;
+	background: #ededed;
+	font-weight: normal;
+	color: #2b2b2b;
+}
+
+.ui-dialog-buttonset .ui-state-hover{
+	border: 1px solid #000;
+	background: #ededed;
+	font-weight: normal;
+	color: #2b2b2b;
+}
+
+
+/*中部*/
+
+/*解决谷歌浏览器默认input背景发黄*/
+input:-webkit-autofill {
+-webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+article{
+	width: 800px;
+	margin: 0 auto;
+}
+
+/*表单input 和外框样式*/
+#reg-from{
+}
+
+.reg-dialog{
+	text-align: center;
+}
+.reg-dialog p{
+	margin:30px 0 0 0;  
+	display:flex;
+	align-items:center;
+	justify-content:space-between;
+	
+}
+
+.reg-dialog p span{
+	display:flex;
+	align-items:center;
+	justify-content:space-between;
+	
+}
+.reg-dialog p:last-child span{
+	display: flex;
+	align-items:flex-end;
+	justify-content:space-between;
+	
+}
+
+
+
+
+.reg-dialog input{
+	min-width: 300px;
+	height: 40px;
+	padding:0 0 0 30px;
+	font-size: 1.4em;
+	border:1px solid gray;
+}
+
+.reg-dialog input:focus{
+	outline: none;
+}
+
+
+.reg-p{
+	height: 20px;
+}
+
+#reg-checkbox{
+	height: 14px;
+	width: 14px;
+	min-width: auto;
+	vertical-align:middle; margin-top:-2px; margin-bottom:1px;
+}
+
+.ipt-reg-agree{
+		font-size: 14px;
+}
+
+/*提交按钮样式修改*/
+
+.ui-dialog{
+	overflow:hidden;
+}
+
+.ui-dialog .ui-dialog-buttonpane{
+	padding: 0;
+	text-align: center;
+}
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset{
+	float: none;
+}
+.ui-dialog .ui-dialog-buttonpane button{
+	margin:10px 0 10px 0;
+	border-radius: 8px;
+	background: pink;
+}
+.ui-dialog-buttonpane button.ui-state-hover{
+	border:1px solid blue;
+}
+.ui-dialog-buttonset .ui-button{
+	height: 40px;
+	width: 300px;
+}
+
+/*iconfont样式修改*/
+.iconfont{
+	position: absolute;
+	font-size: 18px;
+	left:20px;
+	color: #ccc;
+
+}
+
+/*错误样式*/
+/*错误提示样式*/
+label.error{
+	width: 30px;
+	height: 30px;
+	margin-right: 30px;
+	background-image: url("./images/error.png");
+	background-repeat: round;
+}
+
+input.error:not([for="reg_checkbox"]){
+	border:1px solid red;
+}
+
+
+/*正确样式*/
+label.valid{
+	width: 30px;
+	height: 30px;
+	margin-right: 30px;
+	background-image: url("./images/success.png");
+	background-repeat: round;
+}
+
+input.valid:not([for="reg_checkbox"]){
+	border:1px solid green;
+}
+
+
+
+la
+.status{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: pink;
+
+}

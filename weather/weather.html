@@ -1,0 +1,242 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>
+    <title>天气预报</title>
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="css/weather.css">
+    <link rel="stylesheet" href="css/quickLayout.css">
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=GGbplNTfcsp0s8gdQRkcsqvpnMjMwlhd"></script>
+    
+    <script data-main="js/main" src="js/lib/requirejs/require.js"></script>
+</head>
+<body>
+	<div class="fix-scroll">
+        <!-- top -->
+        <div class="container-fluid p0  fw ">
+            <nav class="navbar navbar-default ">
+                <div class="row maxw1170">
+                    <div class="col-sm-2 col-xs-2  tr ">
+                        <h3 class="m0 dib  lh60 b ">WEATHER</3>
+                    </div>
+                    <div class="col-md-4 col-sm-8 col-xs-8 col-md-offset-6 col-sm-offset-2 col-xs-offset-2 tr">
+                        <form id="cityform" method="get" class="f0">
+                            <input type="text" class="dib bd-none h60 f16 pct60  vb pl20 white bg-gray w0 " name="cityname" id="name" placeholder="Search for weather" autocomplete="off">
+							<button class="dib bd-none h60 f14 pct20  bg-gray" type="button">
+                                   <span class="glyphicon  glyphicon-search  white f18" aria-hidden="true"></span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <!-- body -->
+        <div class='container fw'>
+            <div class="row w_top">
+                <div class="col-md-12  bdc right">
+                    <div class='today row pt20 pb20 ml0'>
+                        <!-- 今日天气 -->
+                    </div>
+                    <div class='future row m0 pt20'>
+                        <!-- 未来七天 -->
+                    </div>
+                </div>
+            </div>
+            <!-- 生活指数 -->
+            <div class="row">
+                <div class="panel panel-primary col-md-6 bd-none p0 lifeindex">
+                    <div class="panel-heading br0">生活指数</div>
+					<div class="panel-body bdc p0">
+                        <ul class="nav nav-tabs pct100 df fc lifeDays "></ul>
+                        <div class="tab-content lifeDatas"></div>
+                    </div>
+                </div>
+            </div>
+			<!-- 未来24小时 -->
+			<div class="row">
+				<div class="panel panel-primary  bd-none p0">
+					<div class="panel-heading br0">
+						未来24小时
+						
+					</div>
+					<!-- panel-body -->
+					<div class=" bdc pb10 ">
+						<ul class="nav nav-tabs pct100 df fsb next48title "></ul>
+                     	<div class="tab-content data48options"></div>
+                    </div>
+                </div>
+			</div>
+			<div id="hiddenMap" class="vh"></div>
+        
+		</div>
+		
+
+<!--——————————————————————————————————————TemplateStart————————————————————————————————————————————————————————-->
+<!--今日天气模板-->
+<template class='today'>
+	<!--<div class="row df fsb">
+		<h4 class="col-xs-2 mt0 mb0 tc ">%citynm%</h4>
+		<h5 class="col-xs-2 mt0 mb0 tc">%days%</h5>
+		<h4 class="col-xs-2 mt0 mb0 tc">%week%</h4>
+		<h4 class="col-xs-2 mt0 mb0 tc">%weather%</h4>
+	</div>
+	<div class="row df fsb">
+		<h4 class="col-xs-2 tc ">最高%temp_high%℃</h4>
+		<h4 class="col-xs-2 tc">最低%temp_low%℃</h4>
+		<h4 class="col-xs-2 tc">当前%temp_curr%℃</h4>
+		<div class='col-xs-2 tc'>
+			<svg class="icon" aria-hidden="true">
+				<use xlink:href="#icon-w-%weatid%"></use>
+			</svg>
+		</div>
+	</div>-->
+	<div class="row ml0">
+	<h4 class="col-md-3 tc">%citynm% %days% %week%</h4>
+	</div>
+	<div class="row ml0">
+	<div class="col-md-3 tc">
+		<svg class="icon w80 h80" aria-hidden="true">
+			<use xlink:href="#icon-w-%weatid%"></use>
+		</svg>
+		
+		<span class="vm f80">%temp_curr%</span>
+		<span class="dib vm">
+			<p class="vtb f40 mlr-1">℃</p>
+			<p class="mtr-1">%weather_curr%(实时)</p>
+		</span>
+	</div>
+	</div>
+	<div class="row ml0 ">
+	<h4 class="col-md-3 tc">%temp_low%~%temp_high%℃ %weather%</h4>
+	</div>
+	<div class="row ml0 ">
+
+	</div>
+	
+</template>
+<!--今日aqi模板-->
+<template class="aqi">
+	<!-- <div class="row df fsb">
+		<div class='col-xs-2 tc'>
+			<svg class="icon" aria-hidden="true">
+				<use xlink:href="#icon-aqi_o"></use>
+			</svg>
+		</div>
+		<h4 class="col-xs-2 tc">aqi指数:%aqi%</h4>
+		<div class='col-xs-2 tc'>
+			<svg class="icon w100" aria-hidden="true">
+				<use xlink:href="#icon-aqi%aqi_levid%"></use>
+			</svg>
+		</div>
+		<h4 class="col-xs-2 tc nowrap">%aqi_remark%</h4>
+	</div> -->
+		<h4 class="col-xs-2 tc">aqi指数:%aqi%</h4>
+		<svg class="icon w100" aria-hidden="true">
+			<use xlink:href="#icon-aqi%aqi_levid%"></use>
+		</svg>
+</template>
+<!--未来5-7天模板-->
+<template class='future'>
+	<div class="col-md-2 tc">
+		<div class='row'>
+			<h4 class='my-col-2 m0'>%week%</h4>
+			<div class='my-col-2'>%days%</div>
+			<div class='my-col-2'>
+				<svg class="icon" aria-hidden="true">
+					<use xlink:href="#icon-w-%weatid%"></use>
+				</svg>
+				<svg class="icon" aria-hidden="true">
+					<use xlink:href="#icon-w-%weatid1%"></use>
+				</svg>
+			</div>
+			<div class='my-col-2'>%temp_low%℃/%temp_high%℃</div>
+			<div class='my-col-2'>%weather%</div>
+		</div>
+	</div>
+</template>
+<!--未来5-7天生活指数模板-->
+<template class="lifeDays">
+	<li class=" tc fg1  "><a href="#%days%" data-toggle="tab" class="pl0 pr0"><p>%week_1%</p><p>%days%</p></a></li>
+</template>
+<template class="lifeDatas">
+	<div class="tab-pane fade in" id="%days%">
+		<div class='col-sm-6 p10'>
+			<div class='dib vm'><svg class="icon" aria-hidden="true"><use xlink:href="#icon-ct"></use></svg></div>
+			<div class='dib vm '>
+				<p class="m0 ">
+					<span>%lifeindex_ct_typenm%</span>
+					<span>%lifeindex_ct_attr%</span>
+				</p>
+				<p class="m0 ">%lifeindex_ct_dese%</p>
+			</div>
+			
+		</div>
+		<!-- <div class='col-sm-6  p10'>
+			<div class='dib vm'><svg class="icon" aria-hidden="true"><use xlink:href="#icon-gm"></use></svg></div>
+			<div class='dib vm'>
+				<p class="m0">
+					<span>%lifeindex_gm_typenm%</span>
+					<span>%lifeindex_gm_attr%</span>
+				</p>
+				<p class="m0">%lifeindex_gm_dese%</p>
+			</div>
+		</div>
+		<div class='col-sm-6  p10'>
+			<div class='dib vm'><svg class="icon" aria-hidden="true"><use xlink:href="#icon-kq"></use></svg></div>
+			<div class='dib vm'>
+				<p class="m0">
+					<span>%lifeindex_kq_typenm%</span>
+					<span>%lifeindex_kq_attr%</span>
+				</p>
+				<p class="m0">%lifeindex_kq_dese%</p>
+			</div>
+		</div>
+		<div class='col-sm-6 p10 '>
+			<div class='dib vm'><svg class="icon" aria-hidden="true"><use xlink:href="#icon-uv"></use></svg></div>
+			<div class='dib vm'>
+				<p class="m0">
+					<span>%lifeindex_uv_typenm%</span>
+					<span>%lifeindex_uv_attr%</span>
+				</p>
+				<p class="m0">%lifeindex_uv_dese%</p>
+			</div>
+		</div>
+		<div class='col-sm-6 p10 '>
+			<div class='dib vm'><svg class="icon" aria-hidden="true"><use xlink:href="#icon-xc"></use></svg></div>
+			<div class='dib vm'>
+				<p class="m0">
+					<span>%lifeindex_xc_typenm%</span>
+					<span>%lifeindex_xc_attr%</span>
+				</p>
+				<p class="m0">%lifeindex_xc_dese%</p>
+			</div>
+		</div> -->
+	</div>
+</template>
+	
+<!--未来48小时模板-->
+<template class="next48title">
+	<li class="tc fg1"><a href="#%title%" data-toggle="tab" class="p0"><p class="b">%value%</p></a></li>
+</template>
+ <template class="next48content">
+<!--tab-pane fade in -->
+	<div class="tab-pane fade in aaaa "  id="%title%" >
+</template>
+
+
+<!--为了使用百度借口MAP类初始化-->
+<template >
+	<div id="hiddenMap"></div>
+</template>
+
+
+
+<!--——————————————————————————————————————TemplateEnd————————————————————————————————————————————————————————-->
+<script type="text/javascript">
+       console.log(encodeURI("苏州"))
+</script>
+    </div>
+</body>
+
+</html>

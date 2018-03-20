@@ -1,0 +1,115 @@
+@media screen and (max-width:991px) {
+	.my-col-2{
+		display:inline-block;
+		width:20%;
+		float:left;
+		line-height:6rem;
+	}
+}
+@media screen and (min-width:992px) {
+	.my-col-2{
+		width:100%;	
+	}
+}	
+
+.ovs {
+	overflow-y: scroll;
+	height:130px;
+}
+#cityform .list-city a:hover{
+	background:#337ab7;
+	color:white;
+}
+
+
+.current{
+	background:#337ab7;
+	color:white !important;
+}
+div.today .row > *{
+	margin-top: 0;
+	margin-bottom: 0;
+	line-height:50px;
+	padding:0;
+}
+.data48options{
+	/* position:relative; */
+}
+.data48options .tab-pane{
+	 /* position:absolute ;
+	 visibility:hidden; */
+}
+.data48options .active{
+	/* visibility:visible  */
+}
+
+.aaaa{
+width:100%;
+height:300px;
+}
+
+.w_top{
+	/* background-image:  url(../images/beijing/1.jpg); */
+}
+
+/*重写bootstrap*/
+.input-group .form-control{
+	float:none;
+}
+
+.nav-pills > li + li{
+	margin-left:0;
+}
+.container-fluid .navbar{
+		background: #fff;
+}
+.nav-pills > li.active > a, 
+.nav-pills > li.active > a:hover, 
+.nav-pills > li.active > a:focus {
+color: #fff;
+background-color: #66CC99;
+}
+.lifeindex .nav > li > a{
+padding: 10px 0 10px 0;
+}
+/*未来24小时ul titles字体大小*/
+.next48title li a{
+	font-size: 18px;
+}
+.next48title > li > a{
+	margin-right: 0;
+}
+
+.icon {
+   width: 40px; height: 40px;
+   vertical-align: middle;
+   fill: currentColor;
+   overflow: hidden;
+}
+
+.maxw1170{
+	max-width:1170px;
+	background: #fff;
+	margin: 0 auto;
+}
+
+/*修改placeholder默认颜色*/
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #fff; opacity:1; 
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #fff;opacity:1;
+}
+
+input:-ms-input-placeholder{
+    color: #fff;opacity:1;
+}
+
+input::-webkit-input-placeholder{
+    color: #fff;
+    opacity:.9;
+    font-weight: normal;
+
+}
+
